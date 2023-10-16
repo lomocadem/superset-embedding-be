@@ -1,6 +1,6 @@
 # superset-embedding-be
 
-# To Add more variables:
+## To Add more variables:
 * Create github action secret with prefix K8S_ENV_ at https://github.com/lomocadem/superset-embedding-be/settings/secrets/actions
 * Update cicd/deployment.yaml file to map secret with variable name
 
