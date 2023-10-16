@@ -21,6 +21,27 @@ spec:
     spec:
       containers:
       - name: fastapi
+        env:
+        - name: SUPERSET_USER
+          valueFrom:
+            secretKeyRef:
+              key: K8S_ENV_SUPERSET_USER
+              name: sps-embedding-be-envs
+        - name: SUPERSET_PW
+          valueFrom:
+            secretKeyRef:
+              key: K8S_ENV_SUPERSET_PW
+              name: sps-embedding-be-envs
+        - name: BE_BASE_URL
+          valueFrom:
+            secretKeyRef:
+              key: K8S_ENV_BE_BASE_URL
+              name: sps-embedding-be-envs
+        - name: SUPERSET_URL
+          valueFrom:
+            secretKeyRef:
+              key: K8S_ENV_SUPERSET_URL
+              name: sps-embedding-be-envs
         image: 645459369268.dkr.ecr.eu-central-1.amazonaws.com/mt-emea-sps-embedding-be:v6504587713
         ports:
         - containerPort: 8000
