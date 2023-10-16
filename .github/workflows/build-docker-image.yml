@@ -27,7 +27,9 @@ jobs:
 
     - name: Generate envs
       run: |
-        echo "$ALLMYSECRETS"
+        export secret_creation_options=""
+        for key in $(echo $ALLMYSECRETS|jq -r '.|keys[]');do if [[ ${key} =~ "K8S_ENV_"* ]] ; then export value=$(echo $ALLMYSECRETS|jq -r ".\"${key}\""); export secret_creation_options="${secret_creation_options} --from-literal=${key}=${value}"; fi; done
+        kubectl -n bi create secret generic sps-embedding-be-envs ${secret_creation_options} --dry-run=client -o yaml | kubectl -n bi apply -f - 
       shell: bash
       env:
         ALLMYSECRETS: ${{ toJSON(secrets) }}
