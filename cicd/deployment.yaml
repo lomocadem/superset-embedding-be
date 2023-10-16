@@ -37,7 +37,7 @@ spec:
             secretKeyRef:
               key: K8S_ENV_BE_BASE_URL
               name: sps-embedding-be-envs
-        - name: SUPERSET_URL
+        - name: SUPERSET_BASE_URL
           valueFrom:
             secretKeyRef:
               key: K8S_ENV_SUPERSET_URL
